@@ -6,6 +6,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -15,10 +16,15 @@ public class Main extends Application {
     public static final int MAXFIELDS = 10;
     public static final int MINFIELDS = 2;
 
+    static Stage stage;
+
     @Override
     public void start(Stage stage) throws IOException {
+        Main.stage = stage;
+
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("field-pick.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setTitle("Decider");
         stage.setScene(scene);
         stage.show();
@@ -31,5 +37,23 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+
+
+    // TODO: add saving function
+    // Saves data and closes program.
+    public static void closeProgram() {
+        stage.close();
+    }
+
+    // Minimizes program
+    public static void minimizeProgram() {
+        stage.setIconified(true);
+    }
+
+    // Maximizes program
+    public static void maximizeProgram() {
+        stage.setMaximized(!stage.isMaximized());
     }
 }

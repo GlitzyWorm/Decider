@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.kattehale.decider.MainController">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.kattehale.decider.MainController">
    <top>
-      <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ToolBar fx:id="toolBar" nodeOrientation="RIGHT_TO_LEFT" onMouseDragged="#toolbarDragged" onMousePressed="#toolbarPressed" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <items>
-          <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="X" textAlignment="CENTER" />
-            <Button mnemonicParsing="false" text="Resize" />
-            <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" text="-" />
+           <Button fx:id="closeButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#closeProgram" textAlignment="CENTER">
+              <graphic>
+                 <FontIcon iconLiteral="codicon-chrome-close"/>
+              </graphic>
+           </Button>
+            <Button fx:id="resizeButton" mnemonicParsing="false" onAction="#maximizeProgram">
+               <graphic>
+                  <FontIcon iconLiteral="codicon-chrome-maximize"/>
+               </graphic>
+            </Button>
+            <Button fx:id="minButton" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#minimizeProgram">
+               <graphic>
+                  <FontIcon iconLiteral="codicon-chrome-minimize"/>
+               </graphic>
+            </Button>
         </items>
       </ToolBar>
    </top>
@@ -28,22 +36,26 @@
             </Button>
          </bottom>
          <center>
-            <VBox fx:id="textfieldContainer" alignment="CENTER" fillWidth="false" spacing="10.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextField VBox.vgrow="ALWAYS" />
-                  <TextField VBox.vgrow="ALWAYS">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </TextField>
-                  <HBox alignment="CENTER" spacing="20.0">
+                  <VBox fx:id="textfieldContainer" alignment="CENTER" fillWidth="false" spacing="10.0">
+                     <children>
+                        <TextField VBox.vgrow="ALWAYS" />
+                        <TextField VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </TextField>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT" fillWidth="false" spacing="10.0">
                      <children>
                         <Button fx:id="addButton" mnemonicParsing="false" onAction="#addTextField" text="+" />
                         <Button fx:id="delButton" disable="true" mnemonicParsing="false" onAction="#delTextField" text="-" />
                      </children>
-                  </HBox>
+                  </VBox>
                </children>
-            </VBox>
+            </HBox>
          </center>
       </BorderPane>
    </center>
