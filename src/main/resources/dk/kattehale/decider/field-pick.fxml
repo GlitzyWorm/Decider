@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.kattehale.decider.MainController">
+   <top>
+      <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <items>
+          <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="X" textAlignment="CENTER" />
+            <Button mnemonicParsing="false" text="Resize" />
+            <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" text="-" />
+        </items>
+      </ToolBar>
+   </top>
+   <center>
+      <BorderPane BorderPane.alignment="CENTER">
+         <bottom>
+            <Button mnemonicParsing="false" text="Pick" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="50.0" />
+               </BorderPane.margin>
+            </Button>
+         </bottom>
+         <center>
+            <VBox fx:id="textfieldContainer" alignment="CENTER" fillWidth="false" spacing="10.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField VBox.vgrow="ALWAYS" />
+                  <TextField VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </TextField>
+                  <HBox alignment="CENTER" spacing="20.0">
+                     <children>
+                        <Button fx:id="addButton" mnemonicParsing="false" onAction="#addTextField" text="+" />
+                        <Button fx:id="delButton" disable="true" mnemonicParsing="false" onAction="#delTextField" text="-" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>
