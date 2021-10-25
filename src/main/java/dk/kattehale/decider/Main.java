@@ -13,8 +13,8 @@ import java.io.IOException;
 public class Main extends Application {
 
     // Constants
-    public static final int MAXFIELDS = 10;
-    public static final int MINFIELDS = 2;
+    public static final int MAXFIELDS = 10;      // Allows a maximum of MAXFIELDS of TextFields to be created.
+    public static final int MINFIELDS = 2;       // Allows a minimum of MINFIELDS of TextFields to be created.
 
     static Stage stage;
 
@@ -41,7 +41,7 @@ public class Main extends Application {
 
 
 
-    // TODO: add saving function
+    // TODO: add saving function.
     // Saves data and closes program.
     public static void closeProgram() {
         stage.close();
@@ -56,4 +56,6 @@ public class Main extends Application {
     public static void maximizeProgram() {
         stage.setMaximized(!stage.isMaximized());
     }
+
+    // TODO: Add support for resizing.
 }

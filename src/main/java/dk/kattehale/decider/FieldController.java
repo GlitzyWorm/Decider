@@ -1,6 +1,11 @@
 package dk.kattehale.decider;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToolBar;
@@ -8,40 +13,47 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class MainController {
+import java.io.IOException;
+
+public class FieldController {
 
     private double xOffset;
     private double yOffset;
+    private int amountOfTextFields = Main.MINFIELDS;
 
+    /* Toolbar and its buttons */
     @FXML private ToolBar toolBar;
     @FXML private Button closeButton;
     @FXML private Button resizeButton;
     @FXML private Button minButton;
 
+    /* Buttons and textfieldContainer for handling adding and deleting TextFields */
     @FXML private Button addButton;
     @FXML private Button delButton;
     @FXML private VBox textfieldContainer;
 
-    /*@FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }*/
+    /* Pick button */
+    @FXML private Button pickButton;
 
 
-    // Add and delete TextFields.
+
+
+    /* Add and delete TextFields. */
     @FXML
     protected void addTextField() {
         // Gets the amount of TextFields in VBox.
-        int index = textfieldContainer.getChildren().size() - 1;
+        int index = textfieldContainer.getChildren().size();
 
         // If the index is 1 less than MAXFIELDS, add a last TextField and disable button.
         // Else add a new TextField above the 'add'-button.
         if(index == Main.MAXFIELDS - 1) {
+            amountOfTextFields++;
             addButton.setDisable(true);
             delButton.setDisable(false);
             TextField newField = new TextField();
             textfieldContainer.getChildren().add(index,newField);
         } else {
+            amountOfTextFields++;
             delButton.setDisable(false);
             TextField newField = new TextField();
             textfieldContainer.getChildren().add(index,newField);
@@ -56,12 +68,59 @@ public class MainController {
         // If index is equal to MINFIELDS, remove the last TextField and disable button.
         // Else remove a TextField
         if(index == Main.MINFIELDS) {
+            amountOfTextFields--;
             delButton.setDisable(true);
             addButton.setDisable(false);
             textfieldContainer.getChildren().remove(index);
         } else {
+            amountOfTextFields--;
             addButton.setDisable(false);
             textfieldContainer.getChildren().remove(index);
+        }
+    }
+
+    @FXML
+    protected void clearFields() {
+        ObservableList<Node> textfieldsVB = textfieldContainer.getChildren();
+        TextField[] tfa = new TextField[amountOfTextFields];
+
+        for(int i=0; i < amountOfTextFields; i++) {
+            tfa[i] = (TextField) textfieldsVB.get(i);
+            tfa[i].setText(null);
+        }
+    }
+
+    @FXML // Gets values from the textfields and sends it to be processed.
+    protected void pickClick() throws IOException {
+
+        boolean isFilled = true;
+
+        // Loads next scene
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("result-page.fxml"));
+        Parent root = loader.load();
+
+        // Retrieves the TextFields and place them in an array.
+        ObservableList<Node> textfieldsVB = textfieldContainer.getChildren();
+        TextField[] tfa = new TextField[amountOfTextFields];
+
+        for(int i=0; i < amountOfTextFields; i++) {
+            tfa[i] = (TextField) textfieldsVB.get(i);
+            if(tfa[i].getText().isBlank()) {
+                AlertBox.display("Warning", "All text fields must be filled!");
+                isFilled = false;
+                break;
+            }
+        }
+
+        // Only send the data further if all TextFields is non-blank.
+        if(isFilled) {
+            // Sends the array to the next scene's controller.
+            ResultController rc = loader.getController();
+            rc.receiveTextFields(tfa);
+
+            // Switches to the next scene.
+            Stage stage = (Stage) pickButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
         }
     }
 
