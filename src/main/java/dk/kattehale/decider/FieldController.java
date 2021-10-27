@@ -37,7 +37,6 @@ public class FieldController {
 
 
 
-
     /* Add and delete TextFields. */
     @FXML
     protected void addTextField() {
@@ -51,11 +50,13 @@ public class FieldController {
             addButton.setDisable(true);
             delButton.setDisable(false);
             TextField newField = new TextField();
+            newField.setPromptText("Indtast valgmulighed");
             textfieldContainer.getChildren().add(index,newField);
         } else {
             amountOfTextFields++;
             delButton.setDisable(false);
             TextField newField = new TextField();
+            newField.setPromptText("Indtast valgmulighed");
             textfieldContainer.getChildren().add(index,newField);
         }
     }
@@ -106,7 +107,7 @@ public class FieldController {
         for(int i=0; i < amountOfTextFields; i++) {
             tfa[i] = (TextField) textfieldsVB.get(i);
             if(tfa[i].getText().isBlank()) {
-                AlertBox.display("Warning", "All text fields must be filled!");
+                AlertBox.display("Advarsel!", "Alle tekstfelter skal være udfyldt!");
                 isFilled = false;
                 break;
             }
@@ -122,6 +123,14 @@ public class FieldController {
             Stage stage = (Stage) pickButton.getScene().getWindow();
             stage.setScene(new Scene(root));
         }
+    }
+
+
+    /* If goBack is pressed, this method is called and reinstates TextFields */
+    public void reinstateTF(TextField[] tfas) {
+        textfieldContainer.getChildren().clear();
+        textfieldContainer.getChildren().addAll(tfas);
+        amountOfTextFields = textfieldContainer.getChildren().size();
     }
 
 
@@ -157,4 +166,5 @@ public class FieldController {
         stage.setX(event.getScreenX() - xOffset);
         stage.setY(event.getScreenY() - yOffset);
     }
+
 }

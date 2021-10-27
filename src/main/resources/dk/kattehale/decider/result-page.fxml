@@ -8,23 +8,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.kattehale.decider.ResultController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@css/Decider.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.kattehale.decider.ResultController">
    <top>
        <ToolBar fx:id="toolBar" nodeOrientation="RIGHT_TO_LEFT" onMouseDragged="#toolbarDragged" onMousePressed="#toolbarPressed" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
            <items>
-               <Button fx:id="closeButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#closeProgram" textAlignment="CENTER">
+               <Button id="button-toolbar" fx:id="closeButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#closeProgram" textAlignment="CENTER">
                    <graphic>
-                       <FontIcon iconLiteral="codicon-chrome-close" />
+                       <FontIcon id="button-toolbar" iconColor="WHITE" iconLiteral="codicon-chrome-close" iconSize="16" text="" />
                    </graphic>
                </Button>
-               <Button fx:id="resizeButton" mnemonicParsing="false" onAction="#maximizeProgram">
+               <Button id="button-toolbar" fx:id="resizeButton" mnemonicParsing="false" onAction="#maximizeProgram">
                    <graphic>
-                       <FontIcon iconLiteral="codicon-chrome-maximize" />
+                       <FontIcon id="button-toolbar" iconColor="WHITE" iconLiteral="codicon-chrome-maximize" iconSize="16" />
                    </graphic>
                </Button>
-               <Button fx:id="minButton" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#minimizeProgram">
+               <Button id="button-toolbar" fx:id="minButton" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#minimizeProgram">
                    <graphic>
-                       <FontIcon iconLiteral="codicon-chrome-minimize" />
+                       <FontIcon id="button-toolbar" iconColor="WHITE" iconLiteral="codicon-chrome-minimize" iconSize="16" />
                    </graphic>
                </Button>
            </items>
@@ -33,7 +33,7 @@
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Valget faldt på:" />
+            <Label id="bold-label" text="Valget faldt på:" />
             <Label fx:id="chosenLabel" text="Valg" />
          </children>
       </VBox>
@@ -41,9 +41,10 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="menuButton" mnemonicParsing="false" onAction="#goToMainMenu" prefWidth="90.0" text="Hovedmenu" />
-            <Button fx:id="redoButton" mnemonicParsing="false" onAction="#repeatSelection" prefWidth="90.0" text="Gentag" />
-            <Button fx:id="quitButton" mnemonicParsing="false" onAction="#closeProgram" prefWidth="90.0" text="Afslut" />
+            <Button fx:id="menuButton" mnemonicParsing="false" onAction="#goToMainMenu" prefWidth="100.0" text="Hovedmenu" />
+            <Button fx:id="changeButton" mnemonicParsing="false" onAction="#goBack" prefWidth="100.0" text="Lav ændring" />
+            <Button fx:id="redoButton" mnemonicParsing="false" onAction="#repeatSelection" prefWidth="100.0" text="Gentag" />
+            <Button fx:id="quitButton" mnemonicParsing="false" onAction="#closeProgram" prefWidth="100.0" text="Afslut" />
          </children>
       </HBox>
    </bottom>

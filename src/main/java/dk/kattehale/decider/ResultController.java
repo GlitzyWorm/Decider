@@ -21,6 +21,7 @@ public class ResultController {
     private double yOffset;
 
     private String[] choices;
+    private TextField[] tfa;
 
     /* Toolbar and its buttons */
     @FXML private ToolBar toolBar;
@@ -33,6 +34,7 @@ public class ResultController {
 
     /* Bottom buttons */
     @FXML private Button menuButton;
+    @FXML private Button changeButton;
     @FXML private Button redoButton;
     @FXML private Button quitButton;
 
@@ -42,6 +44,7 @@ public class ResultController {
     // Method to receive array of TextFields
     public void receiveTextFields(TextField[] tfa) {
         this.choices = new String[tfa.length];
+        this.tfa = tfa;
 
         for(int i = 0; i < choices.length; i++) {
             choices[i] = tfa[i].getText();
@@ -63,6 +66,21 @@ public class ResultController {
     protected void goToMainMenu() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("field-pick.fxml")));
         Stage stage = (Stage) menuButton.getScene().getWindow();
+        stage.setScene(new Scene(root));
+    }
+
+    @FXML // Go back to field-pick and retain input
+    protected void goBack() throws IOException {
+        // Loads next scene
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("field-pick.fxml"));
+        Parent root = loader.load();
+
+        // Sends TextFields back to FieldController
+        FieldController fc = loader.getController();
+        fc.reinstateTF(tfa);
+
+        // Switches to the next scene.
+        Stage stage = (Stage) changeButton.getScene().getWindow();
         stage.setScene(new Scene(root));
     }
 

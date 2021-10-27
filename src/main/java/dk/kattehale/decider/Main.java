@@ -24,6 +24,7 @@ public class Main extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("field-pick.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
+        scene.getStylesheets().add(String.valueOf(Main.class.getResource("css/Decider.css")));
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setTitle("Decider");
         stage.setScene(scene);
