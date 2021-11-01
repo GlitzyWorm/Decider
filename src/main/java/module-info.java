@@ -4,6 +4,7 @@ module dk.kattehale.decider {
 
     requires org.controlsfx.controls;
     requires org.kordamp.ikonli.javafx;
+    requires java.prefs;
 
     opens dk.kattehale.decider to javafx.fxml;
     exports dk.kattehale.decider;

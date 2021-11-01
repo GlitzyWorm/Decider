@@ -10,16 +10,24 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToolBar;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class FieldController {
 
     private double xOffset;
     private double yOffset;
     private int amountOfTextFields = Main.MINFIELDS;
+
+    /* Root */
+    @FXML private BorderPane root;
 
     /* Toolbar and its buttons */
     @FXML private ToolBar toolBar;
@@ -34,7 +42,6 @@ public class FieldController {
 
     /* Pick button */
     @FXML private Button pickButton;
-
 
 
     /* Add and delete TextFields. */
@@ -106,7 +113,7 @@ public class FieldController {
 
         for(int i=0; i < amountOfTextFields; i++) {
             tfa[i] = (TextField) textfieldsVB.get(i);
-            if(tfa[i].getText().isBlank()) {
+            if(tfa[i].getText().isEmpty() || tfa[i].getText().isBlank()) {
                 AlertBox.display("Advarsel!", "Alle tekstfelter skal være udfyldt!");
                 isFilled = false;
                 break;
@@ -134,7 +141,22 @@ public class FieldController {
     }
 
 
-    /* Buttons to close, minimize and maximize the program */
+    /* Buttons to close, minimize and maximize the program and open settings. */
+    @FXML
+    protected void openSettings() throws IOException {
+        Stage settingsStage = new Stage();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("settings.fxml"), ResourceBundle.getBundle("DeciderBundle", Main.locale));
+        Scene scene = new Scene(fxmlLoader.load());
+        scene.getStylesheets().add(String.valueOf(Main.class.getResource("css/Decider.css")));
+        scene.setFill(Color.TRANSPARENT);
+        settingsStage.initStyle(StageStyle.TRANSPARENT);
+        settingsStage.setTitle("Decider");
+        settingsStage.setScene(scene);
+        settingsStage.initModality(Modality.APPLICATION_MODAL);
+        settingsStage.showAndWait();
+    }
+
     @FXML
     protected void closeProgram() {
         Main.closeProgram();
