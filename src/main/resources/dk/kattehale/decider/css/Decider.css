@@ -23,6 +23,11 @@
   -fx-background-color: #c42f48;
 }
 
+#fieldpick-shadow {
+  -fx-background-color:  transparent;
+  -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.4) , 10,0,0,1 );
+}
+
 #fieldpick-root {
   -fx-background-color: #393E46;
   -fx-font-size: 10pt;

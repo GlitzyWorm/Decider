@@ -44,7 +44,7 @@ public class Main extends Application {
         scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(String.valueOf(Main.class.getResource("css/Decider.css")));
         scene.setFill(Color.TRANSPARENT);                                                                               // TODO: Add dropshadow to main window.
-        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initStyle(StageStyle.TRANSPARENT);
         stage.setTitle("Decider");
         stage.setScene(scene);
         stage.show();

@@ -7,81 +7,87 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane id="fieldpick-root" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@css/Decider.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.kattehale.decider.FieldController">
-   <top>
-      <ToolBar fx:id="toolBar" nodeOrientation="RIGHT_TO_LEFT" onMouseDragged="#toolbarDragged" onMousePressed="#toolbarPressed" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <items>
-           <Button id="button-toolbar" fx:id="closeButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#closeProgram" stylesheets="@css/Decider.css" textAlignment="CENTER">
-              <graphic>
-                 <FontIcon id="button-toolbar" iconColor="WHITE" iconLiteral="codicon-chrome-close" iconSize="16" styleClass="button-toolbar" />
-              </graphic>
-           </Button>
-            <Button id="button-toolbar" fx:id="resizeButton" mnemonicParsing="false" onAction="#maximizeProgram">
-               <graphic>
-                  <FontIcon id="button-toolbar" iconColor="WHITE" iconLiteral="codicon-chrome-maximize" iconSize="16" styleClass="button-toolbar" />
-               </graphic>
-            </Button>
-            <Button id="button-toolbar" fx:id="minButton" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#minimizeProgram">
-               <graphic>
-                  <FontIcon id="button-toolbar" iconColor="WHITE" iconLiteral="codicon-chrome-minimize" iconSize="16" styleClass="button-toolbar" />
-               </graphic>
-            </Button>
-            <Region prefWidth="730.0" />
-            <Button id="button-toolbar" fx:id="settingsButton" mnemonicParsing="false" onAction="#openSettings" stylesheets="@css/Decider.css">
-               <graphic>
-                  <FontIcon id="button-toolbar" iconColor="WHITE" iconLiteral="codicon-settings-gear" iconSize="16" />
-               </graphic>
-            </Button>
-        </items>
-      </ToolBar>
-   </top>
-   <center>
-      <BorderPane BorderPane.alignment="CENTER">
-         <bottom>
-            <Button fx:id="pickButton" mnemonicParsing="false" onAction="#pickClick" text="%fieldPickBtn" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets bottom="50.0" />
-               </BorderPane.margin>
-            </Button>
-         </bottom>
+
+<StackPane id="fieldpick-shadow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="950.0" stylesheets="@css/Decider.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.kattehale.decider.FieldController">
+   <children>
+      <BorderPane id="fieldpick-root" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@css/Decider.css">
+         <top>
+            <ToolBar fx:id="toolBar" nodeOrientation="RIGHT_TO_LEFT" onMouseDragged="#toolbarDragged" onMousePressed="#toolbarPressed" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <items>
+                  <Button id="button-toolbar" fx:id="closeButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#closeProgram" stylesheets="@css/Decider.css" textAlignment="CENTER">
+                     <graphic>
+                        <FontIcon id="button-toolbar" iconColor="WHITE" iconLiteral="codicon-chrome-close" iconSize="16" styleClass="button-toolbar" />
+                     </graphic>
+                  </Button>
+                  <Button id="button-toolbar" fx:id="resizeButton" mnemonicParsing="false" onAction="#maximizeProgram">
+                     <graphic>
+                        <FontIcon id="button-toolbar" iconColor="WHITE" iconLiteral="codicon-chrome-maximize" iconSize="16" styleClass="button-toolbar" />
+                     </graphic>
+                  </Button>
+                  <Button id="button-toolbar" fx:id="minButton" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#minimizeProgram">
+                     <graphic>
+                        <FontIcon id="button-toolbar" iconColor="WHITE" iconLiteral="codicon-chrome-minimize" iconSize="16" styleClass="button-toolbar" />
+                     </graphic>
+                  </Button>
+                  <Region prefWidth="730.0" />
+                  <Button id="button-toolbar" fx:id="settingsButton" mnemonicParsing="false" onAction="#openSettings" stylesheets="@css/Decider.css">
+                     <graphic>
+                        <FontIcon id="button-toolbar" iconColor="WHITE" iconLiteral="codicon-settings-gear" iconSize="16" />
+                     </graphic>
+                  </Button>
+               </items>
+            </ToolBar>
+         </top>
          <center>
-            <HBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
-               <children>
-                  <VBox fx:id="textfieldContainer" alignment="CENTER" fillWidth="false" spacing="10.0">
+            <BorderPane BorderPane.alignment="CENTER">
+               <bottom>
+                  <Button fx:id="pickButton" mnemonicParsing="false" onAction="#pickClick" text="%fieldPickBtn" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets bottom="50.0" />
+                     </BorderPane.margin>
+                  </Button>
+               </bottom>
+               <center>
+                  <HBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
                      <children>
-                        <TextField promptText="%fieldPickPromt" VBox.vgrow="ALWAYS" />
-                        <TextField promptText="%fieldPickPromt" VBox.vgrow="ALWAYS">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </TextField>
+                        <VBox fx:id="textfieldContainer" alignment="CENTER" fillWidth="false" spacing="10.0">
+                           <children>
+                              <TextField promptText="%fieldPickPromt" VBox.vgrow="ALWAYS" />
+                              <TextField promptText="%fieldPickPromt" VBox.vgrow="ALWAYS">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" fillWidth="false" spacing="10.0">
+                           <children>
+                              <Button id="button-controls" fx:id="addButton" mnemonicParsing="false" onAction="#addTextField">
+                                 <graphic>
+                                    <FontIcon id="button-controls" iconColor="#a1a1a1" iconLiteral="codicon-add" iconSize="26" styleClass="button-controls" />
+                                 </graphic>
+                              </Button>
+                              <Button id="button-controls" fx:id="clearButton" mnemonicParsing="false" onAction="#clearFields">
+                                 <graphic>
+                                    <FontIcon id="button-controls" iconColor="#a1a1a1" iconLiteral="codicon-trash" iconSize="26" />
+                                 </graphic>
+                              </Button>
+                              <Button id="button-controls" fx:id="delButton" disable="true" mnemonicParsing="false" onAction="#delTextField">
+                                 <graphic>
+                                    <FontIcon id="button-controls" iconColor="#a1a1a1" iconLiteral="codicon-remove" iconSize="26" />
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </VBox>
                      </children>
-                  </VBox>
-                  <VBox alignment="CENTER_LEFT" fillWidth="false" spacing="10.0">
-                     <children>
-                        <Button id="button-controls" fx:id="addButton" mnemonicParsing="false" onAction="#addTextField">
-                           <graphic>
-                              <FontIcon id="button-controls" iconColor="#a1a1a1" iconLiteral="codicon-add" iconSize="26" styleClass="button-controls" />
-                           </graphic>
-                        </Button>
-                        <Button id="button-controls" fx:id="clearButton" mnemonicParsing="false" onAction="#clearFields">
-                           <graphic>
-                              <FontIcon id="button-controls" iconColor="#a1a1a1" iconLiteral="codicon-trash" iconSize="26" />
-                           </graphic>
-                        </Button>
-                        <Button id="button-controls" fx:id="delButton" disable="true" mnemonicParsing="false" onAction="#delTextField">
-                           <graphic>
-                              <FontIcon id="button-controls" iconColor="#a1a1a1" iconLiteral="codicon-remove" iconSize="26" />
-                           </graphic>
-                        </Button>
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
+                  </HBox>
+               </center>
+            </BorderPane>
          </center>
       </BorderPane>
-   </center>
-</BorderPane>
+   </children>
+</StackPane>

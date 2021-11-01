@@ -4,7 +4,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -105,7 +104,9 @@ public class FieldController {
 
         // Loads next scene
         FXMLLoader loader = new FXMLLoader(getClass().getResource("result-page.fxml"));
-        Parent root = loader.load();
+        Scene scene = new Scene(loader.load());
+        scene.getStylesheets().add(String.valueOf(Main.class.getResource("css/Decider.css")));
+        scene.setFill(Color.TRANSPARENT);
 
         // Retrieves the TextFields and place them in an array.
         ObservableList<Node> textfieldsVB = textfieldContainer.getChildren();
@@ -128,7 +129,8 @@ public class FieldController {
 
             // Switches to the next scene.
             Stage stage = (Stage) pickButton.getScene().getWindow();
-            stage.setScene(new Scene(root));
+//            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setScene(scene);
         }
     }
 

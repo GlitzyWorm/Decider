@@ -2,18 +2,19 @@ package dk.kattehale.decider;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToolBar;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Random;
+import java.util.ResourceBundle;
 
 public class ResultController {
 
@@ -60,20 +61,25 @@ public class ResultController {
     }
 
 
-
-
     @FXML // Changes scene to main screen (for now it goes to field-pick)
     protected void goToMainMenu() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("field-pick.fxml")));
+        ResourceBundle bundle = ResourceBundle.getBundle("DeciderBundle");;
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("field-pick.fxml")), bundle);
+        Scene scene = new Scene(loader.load());
         Stage stage = (Stage) menuButton.getScene().getWindow();
-        stage.setScene(new Scene(root));
+        scene.getStylesheets().add(String.valueOf(Main.class.getResource("css/Decider.css")));
+        scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
     }
 
     @FXML // Go back to field-pick and retain input
     protected void goBack() throws IOException {
         // Loads next scene
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("field-pick.fxml"));
-        Parent root = loader.load();
+        ResourceBundle bundle = ResourceBundle.getBundle("DeciderBundle");;
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("field-pick.fxml")), bundle);
+        Scene scene = new Scene(loader.load());
+        scene.getStylesheets().add(String.valueOf(Main.class.getResource("css/Decider.css")));
+        scene.setFill(Color.TRANSPARENT);
 
         // Sends TextFields back to FieldController
         FieldController fc = loader.getController();
@@ -81,7 +87,7 @@ public class ResultController {
 
         // Switches to the next scene.
         Stage stage = (Stage) changeButton.getScene().getWindow();
-        stage.setScene(new Scene(root));
+        stage.setScene(scene);
     }
 
     @FXML // Repeats the selection and updates the result (maybe fires the animation again?)
