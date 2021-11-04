@@ -16,13 +16,15 @@
 }
 
 .button:hover {
-  -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.4) , 10,0,0,1 );
+  -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3) , 10,0,0,1 );
 }
 
 .button:pressed {
   -fx-background-color: #c42f48;
 }
 
+
+/* CSS for field-pick.fxml */
 #fieldpick-shadow {
   -fx-background-color:  transparent;
   -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.4) , 10,0,0,1 );
@@ -33,11 +35,23 @@
   -fx-font-size: 10pt;
 }
 
-#bold-label {
+/* CSS for result-page.fxml */
+#result-header-label {
+  -fx-text-fill: #d6d6d6;
   -fx-font-weight: bold;
-  -fx-underline: true;
+  -fx-underline: false;
+  -fx-font-size: 20pt;
 }
 
+#result-pick-label {
+  -fx-text-fill: #EDEDED;
+  -fx-font-size: 25pt;
+  /* -fx-border-color: grey; */
+  -fx-background-color: #30343b;
+  -fx-padding: 5pt 40pt 5pt 40pt;
+}
+
+/* CSS for alertbox.java */
 #alert-label {
   -fx-font-size: 10pt;
   -fx-font-weight: bold;
@@ -59,6 +73,8 @@
   -fx-background-color: transparent;
 }
 
+
+/* CSS for toolbar */
 #button-toolbar {
   -fx-background-color: transparent;
 }
@@ -75,6 +91,8 @@
   -fx-icon-color: #E94560;
 }
 
+
+/* CSS for settings.fxml */
 #settings-root {
   -fx-background-color: #292e36;
 

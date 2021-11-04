@@ -25,16 +25,6 @@
                         <FontIcon id="button-toolbar" iconColor="WHITE" iconLiteral="codicon-chrome-close" iconSize="16" />
                      </graphic>
                   </Button>
-                  <Button id="button-toolbar" fx:id="settingsMax" mnemonicParsing="false" onAction="#maximizeProgram" stylesheets="@css/Decider.css">
-                     <graphic>
-                        <FontIcon id="button-toolbar" iconColor="WHITE" iconLiteral="codicon-chrome-maximize" iconSize="16" />
-                     </graphic>
-                  </Button>
-                  <Button id="button-toolbar" fx:id="settingsMin" mnemonicParsing="false" onAction="#minimizeProgram" stylesheets="@css/Decider.css">
-                     <graphic>
-                        <FontIcon id="button-toolbar" iconColor="WHITE" iconLiteral="codicon-chrome-minimize" iconSize="16" />
-                     </graphic>
-                  </Button>
               </items>
             </ToolBar>
          </top>

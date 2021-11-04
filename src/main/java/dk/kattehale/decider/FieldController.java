@@ -1,8 +1,11 @@
 package dk.kattehale.decider;
 
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,18 +15,18 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.stage.*;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ResourceBundle;
 
-public class FieldController {
+public class FieldController implements Initializable {
 
     private double xOffset;
     private double yOffset;
     private int amountOfTextFields = Main.MINFIELDS;
+    private boolean firstLaunch = true;
 
     /* Root */
     @FXML private BorderPane root;
@@ -31,7 +34,6 @@ public class FieldController {
     /* Toolbar and its buttons */
     @FXML private ToolBar toolBar;
     @FXML private Button closeButton;
-    @FXML private Button resizeButton;
     @FXML private Button minButton;
 
     /* Buttons and textfieldContainer for handling adding and deleting TextFields */
@@ -41,6 +43,17 @@ public class FieldController {
 
     /* Pick button */
     @FXML private Button pickButton;
+
+    ResourceBundle resources;
+
+
+    public void initialize(URL location, ResourceBundle resources) {
+        this.resources = resources;
+
+        if(firstLaunch) {
+            delButton.setDisable(true);
+        }
+    }
 
 
     /* Add and delete TextFields. */
@@ -56,13 +69,13 @@ public class FieldController {
             addButton.setDisable(true);
             delButton.setDisable(false);
             TextField newField = new TextField();
-            newField.setPromptText("Indtast valgmulighed");
+            newField.setPromptText(resources.getString("fieldPickPromt"));
             textfieldContainer.getChildren().add(index,newField);
         } else {
             amountOfTextFields++;
             delButton.setDisable(false);
             TextField newField = new TextField();
-            newField.setPromptText("Indtast valgmulighed");
+            newField.setPromptText(resources.getString("fieldPickPromt"));
             textfieldContainer.getChildren().add(index,newField);
         }
     }
@@ -103,7 +116,7 @@ public class FieldController {
         boolean isFilled = true;
 
         // Loads next scene
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("result-page.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("result-page.fxml"), ResourceBundle.getBundle("DeciderBundle", Main.locale));
         Scene scene = new Scene(loader.load());
         scene.getStylesheets().add(String.valueOf(Main.class.getResource("css/Decider.css")));
         scene.setFill(Color.TRANSPARENT);
@@ -115,7 +128,7 @@ public class FieldController {
         for(int i=0; i < amountOfTextFields; i++) {
             tfa[i] = (TextField) textfieldsVB.get(i);
             if(tfa[i].getText().isEmpty() || tfa[i].getText().isBlank()) {
-                AlertBox.display("Advarsel!", "Alle tekstfelter skal være udfyldt!");
+                AlertBox.display(resources.getString("alertboxTitle"), resources.getString("alertboxWarning"), resources);
                 isFilled = false;
                 break;
             }
@@ -140,6 +153,12 @@ public class FieldController {
         textfieldContainer.getChildren().clear();
         textfieldContainer.getChildren().addAll(tfas);
         amountOfTextFields = textfieldContainer.getChildren().size();
+        if(amountOfTextFields == Main.MINFIELDS) {
+            delButton.setDisable(true);
+            firstLaunch = false;
+        } else {
+            delButton.setDisable(false);
+        }
     }
 
 
@@ -152,6 +171,18 @@ public class FieldController {
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(String.valueOf(Main.class.getResource("css/Decider.css")));
         scene.setFill(Color.TRANSPARENT);
+
+        // Centers settings stage.
+        settingsStage.addEventHandler(WindowEvent.WINDOW_SHOWN, new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+                settingsStage.setX((screenBounds.getWidth() - settingsStage.getWidth()) / 2);
+                settingsStage.setY((screenBounds.getHeight() - settingsStage.getHeight()) / 2);
+
+            }
+        });
+
         settingsStage.initStyle(StageStyle.TRANSPARENT);
         settingsStage.setTitle("Decider");
         settingsStage.setScene(scene);
@@ -167,11 +198,6 @@ public class FieldController {
     @FXML
     protected void minimizeProgram() {
         Main.minimizeProgram();
-    }
-
-    @FXML
-    protected void maximizeProgram() {
-        Main.maximizeProgram();
     }
 
 

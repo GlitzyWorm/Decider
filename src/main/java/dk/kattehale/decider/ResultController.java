@@ -27,7 +27,6 @@ public class ResultController {
     /* Toolbar and its buttons */
     @FXML private ToolBar toolBar;
     @FXML private Button closeButton;
-    @FXML private Button resizeButton;
     @FXML private Button minButton;
 
     /* Labels */
@@ -109,11 +108,6 @@ public class ResultController {
     @FXML
     protected void minimizeProgram() {
         Main.minimizeProgram();
-    }
-
-    @FXML
-    protected void maximizeProgram() {
-        Main.maximizeProgram();
     }
 
 

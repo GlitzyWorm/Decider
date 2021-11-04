@@ -91,11 +91,6 @@ public class Main extends Application {
         stage.setIconified(true);
     }
 
-    // Maximizes program
-    public static void maximizeProgram() {
-        stage.setMaximized(!stage.isMaximized());
-    }
-
     // TODO: Add support for resizing.
 
 

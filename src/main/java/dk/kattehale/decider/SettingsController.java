@@ -19,8 +19,6 @@ public class SettingsController implements Initializable {
     ComboBox<String> comboLang;
 
     @FXML Button settingsClose;
-    @FXML Button settingsMax;
-    @FXML Button settingsMin;
 
     String[] langOptions;
     String selectedLanguage;
@@ -38,6 +36,8 @@ public class SettingsController implements Initializable {
         comboLang.getItems().removeAll(comboLang.getItems());
         comboLang.getItems().addAll(langOptions);
         comboLang.getSelectionModel().select(selectedLanguage);
+
+
     }
 
     @FXML // Gets input from the different options and saves it.
@@ -69,16 +69,6 @@ public class SettingsController implements Initializable {
     protected void closeProgram() {
         Stage stage = (Stage) settingsClose.getScene().getWindow();
         stage.close();
-    }
-
-    @FXML
-    protected void minimizeProgram() {
-        Main.minimizeProgram();
-    }
-
-    @FXML
-    protected void maximizeProgram() {
-        Main.maximizeProgram();
     }
 
 

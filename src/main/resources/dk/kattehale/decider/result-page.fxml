@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToolBar?>
@@ -8,7 +9,6 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
-
 
 <StackPane id="fieldpick-shadow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="950.0" stylesheets="@css/Decider.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.kattehale.decider.ResultController">
    <children>
@@ -21,11 +21,6 @@
                         <FontIcon id="button-toolbar" iconColor="WHITE" iconLiteral="codicon-chrome-close" iconSize="16" text="" />
                      </graphic>
                   </Button>
-                  <Button id="button-toolbar" fx:id="resizeButton" mnemonicParsing="false" onAction="#maximizeProgram">
-                     <graphic>
-                        <FontIcon id="button-toolbar" iconColor="WHITE" iconLiteral="codicon-chrome-maximize" iconSize="16" />
-                     </graphic>
-                  </Button>
                   <Button id="button-toolbar" fx:id="minButton" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#minimizeProgram">
                      <graphic>
                         <FontIcon id="button-toolbar" iconColor="WHITE" iconLiteral="codicon-chrome-minimize" iconSize="16" />
@@ -35,20 +30,23 @@
             </ToolBar>
          </top>
          <center>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="70.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label id="bold-label" text="Valget faldt på:" />
-                  <Label fx:id="chosenLabel" text="Valg" />
+                  <Label id="result-header-label" text="%resultHeaderLabel" />
+                  <Label id="result-pick-label" fx:id="chosenLabel" stylesheets="@css/Decider.css" text="Valg" />
                </children>
+               <BorderPane.margin>
+                  <Insets bottom="40.0" />
+               </BorderPane.margin>
             </VBox>
          </center>
          <bottom>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="menuButton" mnemonicParsing="false" onAction="#goToMainMenu" prefWidth="100.0" text="Hovedmenu" />
-                  <Button fx:id="changeButton" mnemonicParsing="false" onAction="#goBack" prefWidth="100.0" text="Lav ændring" />
-                  <Button fx:id="redoButton" mnemonicParsing="false" onAction="#repeatSelection" prefWidth="100.0" text="Gentag" />
-                  <Button fx:id="quitButton" mnemonicParsing="false" onAction="#closeProgram" prefWidth="100.0" text="Afslut" />
+                  <Button fx:id="menuButton" mnemonicParsing="false" onAction="#goToMainMenu" prefWidth="100.0" text="%resultMainMenu" />
+                  <Button fx:id="changeButton" mnemonicParsing="false" onAction="#goBack" prefWidth="100.0" text="%resultChange" />
+                  <Button fx:id="redoButton" mnemonicParsing="false" onAction="#repeatSelection" prefWidth="100.0" text="%resultRepeat" />
+                  <Button fx:id="quitButton" mnemonicParsing="false" onAction="#closeProgram" prefWidth="100.0" text="%resultExit" />
                </children>
             </HBox>
          </bottom>
