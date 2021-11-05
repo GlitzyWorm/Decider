@@ -43,7 +43,7 @@ public class Main extends Application {
         fxmlLoader = new FXMLLoader(Main.class.getResource("field-pick.fxml"), bundle);
         scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(String.valueOf(Main.class.getResource("css/Decider.css")));
-        scene.setFill(Color.TRANSPARENT);                                                                               // TODO: Add dropshadow to main window.
+        scene.setFill(Color.TRANSPARENT);
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setTitle("Decider");
         stage.setScene(scene);
@@ -80,7 +80,6 @@ public class Main extends Application {
 
     }
 
-    // TODO: add saving function.
     // Saves data and closes program.
     public static void closeProgram() {
         stage.close();
@@ -91,7 +90,6 @@ public class Main extends Application {
         stage.setIconified(true);
     }
 
-    // TODO: Add support for resizing.
 
 
     enum Settings {

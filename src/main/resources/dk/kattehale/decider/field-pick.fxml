@@ -6,7 +6,7 @@
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
@@ -27,7 +27,7 @@
                         <FontIcon id="button-toolbar" iconColor="WHITE" iconLiteral="codicon-chrome-minimize" iconSize="16" styleClass="button-toolbar" />
                      </graphic>
                   </Button>
-                  <Region prefWidth="770.0" />
+                  <Pane HBox.hgrow="ALWAYS" />
                   <Button id="button-toolbar" fx:id="settingsButton" mnemonicParsing="false" onAction="#openSettings" stylesheets="@css/Decider.css">
                      <graphic>
                         <FontIcon id="button-toolbar" iconColor="WHITE" iconLiteral="codicon-settings-gear" iconSize="16" />

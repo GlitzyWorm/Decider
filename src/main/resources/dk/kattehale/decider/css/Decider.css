@@ -48,7 +48,7 @@
   -fx-font-size: 25pt;
   /* -fx-border-color: grey; */
   -fx-background-color: #30343b;
-  -fx-padding: 5pt 40pt 5pt 40pt;
+  -fx-padding: 10pt 40pt 10pt 40pt;
 }
 
 /* CSS for alertbox.java */
