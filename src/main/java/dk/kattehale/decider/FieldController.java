@@ -20,6 +20,7 @@ import javafx.stage.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 
 public class FieldController implements Initializable {
 
@@ -45,14 +46,23 @@ public class FieldController implements Initializable {
     @FXML private Button pickButton;
 
     ResourceBundle resources;
+    Preferences prefs;
 
 
     public void initialize(URL location, ResourceBundle resources) {
         this.resources = resources;
+        prefs = Main.prefs;
 
         if(firstLaunch) {
             delButton.setDisable(true);
         }
+
+        int extraFields = prefs.getInt(Main.Settings.DEFNUM.toString(), 2) - Main.MINFIELDS;
+
+        for(int i = 0; i<extraFields; i++) {
+            addTextField();
+        }
+
     }
 
 

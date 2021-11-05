@@ -9,10 +9,11 @@ import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import java.util.prefs.Preferences;
+
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 
 public class Main extends Application {
 
@@ -21,7 +22,7 @@ public class Main extends Application {
     public static final int MINFIELDS = 2;       // Allows a minimum of MINFIELDS of TextFields to be created.
 
     // Used for saving settings
-    private static Preferences prefs;
+    public static Preferences prefs;
 
     public static Locale locale;
 
@@ -60,14 +61,18 @@ public class Main extends Application {
     }
 
     // Saves settins and reloads the stage
-    public static void setPref(Settings setting, String value) {
+    public static void setPref(Settings setting, String StringValue, int intValue) {
 
         // Saves settings in preferences
         switch (setting) {
-            case LANGUAGE, THEME -> prefs.put(setting.toString(), value);
-            case MAXNUM -> prefs.putInt(setting.toString(), Integer.parseInt(value));
+            case LANGUAGE, THEME -> prefs.put(setting.toString(), StringValue);
+            case DEFNUM -> prefs.putInt(setting.toString(), intValue);
         }
 
+        System.out.println("setPref: "+prefs.getInt(Main.Settings.DEFNUM.toString(), 2));
+    }
+
+    public static void reloadStage() {
         // Reloads Stage
         stage.close();
         Platform.runLater( () -> {
@@ -77,7 +82,6 @@ public class Main extends Application {
                 e.printStackTrace();
             }
         });
-
     }
 
     // Saves data and closes program.
@@ -94,7 +98,7 @@ public class Main extends Application {
 
     enum Settings {
         LANGUAGE,
-        MAXNUM,
+        DEFNUM,
         THEME
     }
 }

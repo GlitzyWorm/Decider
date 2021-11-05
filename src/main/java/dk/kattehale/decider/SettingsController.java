@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -18,6 +19,9 @@ public class SettingsController implements Initializable {
     @FXML
     ComboBox<String> comboLang;
 
+    @FXML
+    Slider defSlider;
+
     @FXML Button settingsClose;
 
     String[] langOptions;
@@ -26,6 +30,7 @@ public class SettingsController implements Initializable {
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
 
+        // Language combobox
         langOptions = new String[]{resources.getString("settingsLangChoiceEn"), resources.getString("settingsLangChoiceDa")};
 
         selectedLanguage = switch (Main.locale.toString()) {
@@ -37,6 +42,8 @@ public class SettingsController implements Initializable {
         comboLang.getItems().addAll(langOptions);
         comboLang.getSelectionModel().select(selectedLanguage);
 
+        // Textfield slider
+        defSlider.setValue(Main.prefs.getInt(Main.Settings.DEFNUM.toString(), 2));
 
     }
 
@@ -53,13 +60,18 @@ public class SettingsController implements Initializable {
         selectedLanguage = comboLang.getSelectionModel().getSelectedItem();
 
         // Gets the selected amount of TextFields
+        int defnum = (int) defSlider.getValue();
 
         // Gets the selected theme
 
         // Sends it back and restarts application
         Stage stage = (Stage) comboLang.getScene().getWindow();
         stage.close();
-        Main.setPref(Main.Settings.LANGUAGE, lang);
+        Main.setPref(Main.Settings.DEFNUM, "-1", defnum);
+        Main.setPref(Main.Settings.LANGUAGE, lang, -1);
+
+        Main.reloadStage();
+
 
     }
 

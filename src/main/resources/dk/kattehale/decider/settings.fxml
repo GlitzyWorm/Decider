@@ -60,7 +60,7 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Slider blockIncrement="1.0" majorTickUnit="4.0" max="14.0" min="2.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Slider fx:id="defSlider" blockIncrement="1.0" majorTickUnit="2.0" max="10.0" min="2.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
