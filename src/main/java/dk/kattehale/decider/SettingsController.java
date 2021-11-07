@@ -1,12 +1,13 @@
 package dk.kattehale.decider;
 
+import com.jfoenix.controls.JFXSlider;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.controlsfx.control.ToggleSwitch;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,7 +21,10 @@ public class SettingsController implements Initializable {
     ComboBox<String> comboLang;
 
     @FXML
-    Slider defSlider;
+    JFXSlider defSlider;
+
+    @FXML
+    ToggleSwitch themeSwitch;
 
     @FXML Button settingsClose;
 
@@ -45,6 +49,13 @@ public class SettingsController implements Initializable {
         // Textfield slider
         defSlider.setValue(Main.prefs.getInt(Main.Settings.DEFNUM.toString(), 2));
 
+        // ToggleSwitch
+        if(Main.prefs.get(Main.Settings.THEME.toString(), "Dark").equals("Dark")) {
+            themeSwitch.setSelected(true);
+        } else {
+            themeSwitch.setSelected(false);
+        }
+
     }
 
     @FXML // Gets input from the different options and saves it.
@@ -63,12 +74,20 @@ public class SettingsController implements Initializable {
         int defnum = (int) defSlider.getValue();
 
         // Gets the selected theme
+        String theme;
+        if(themeSwitch.isSelected()) {
+            theme = "Dark";
+        } else {
+            theme = "light";
+        }
+
 
         // Sends it back and restarts application
         Stage stage = (Stage) comboLang.getScene().getWindow();
         stage.close();
         Main.setPref(Main.Settings.DEFNUM, "-1", defnum);
         Main.setPref(Main.Settings.LANGUAGE, lang, -1);
+        Main.setPref(Main.Settings.THEME, theme, -1);
 
         Main.reloadStage();
 

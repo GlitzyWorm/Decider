@@ -1,0 +1,180 @@
+.tool-bar {
+    -fx-background-color: #33658A;
+}
+
+.label {
+    -fx-text-fill: #292828;
+    -fx-font-size: 20pt;
+}
+
+.button {
+  -fx-background-color: #68a8d9;
+  -fx-text-fill: #292828;
+  -fx-background-radius: 8;
+}
+
+.button:hover {
+  -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3) , 10,0,0,1 );
+}
+
+.button:pressed {
+  -fx-background-color: #5990ba;
+}
+
+.text-field:focused {
+  -fx-focus-color: #33658A;
+-fx-faint-focus-color: transparent;
+}
+
+/* CSS for field-pick.fxml */
+#fieldpick-shadow {
+  -fx-background-color:  transparent;
+  -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.4) , 10,0,0,1 );
+}
+
+#fieldpick-root {
+  -fx-background-color: #ffffff;
+  -fx-font-size: 10pt;
+}
+
+/* CSS for result-page.fxml */
+#result-header-label {
+  -fx-text-fill: #4d4c4c;
+  -fx-font-weight: bold;
+  -fx-underline: false;
+  -fx-font-size: 20pt;
+}
+
+#result-pick-label {
+  -fx-text-fill: #403e3e;
+  -fx-font-size: 25pt;
+  /* -fx-border-color: grey; */
+  -fx-background-color: #e8e8e8;
+  -fx-padding: 10pt 40pt 10pt 40pt;
+  -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.4) , 10,0,0,1 );
+}
+
+/* CSS for alertbox.java */
+#alert-label {
+  -fx-font-size: 10pt;
+  -fx-font-weight: bold;
+}
+
+#alert-layout {
+  -fx-background-color: #dedede;
+  -fx-padding: 20;
+  -fx-margin: 30;
+  -fx-border-style: solid;
+  -fx-border-width: 0.1pt;
+  -fx-border-color: #1a1d21;
+  -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.4) , 10,0,0,1 );
+}
+
+#alert-stack {
+  -fx-padding: 20;
+  -fx-margin: 30;
+  -fx-background-color: transparent;
+}
+
+
+/* CSS for toolbar */
+#button-toolbar {
+  -fx-background-color: transparent;
+}
+
+#button-toolbar:hover {
+  -fx-icon-color: #E94560;
+}
+
+#button-controls {
+  -fx-background-color: transparent;
+}
+
+#button-controls:hover {
+  -fx-icon-color: #E94560;
+}
+
+
+/* CSS for settings.fxml */
+#settings-root {
+  -fx-background-color: #e8e7e6;
+
+}
+
+#settings-shadow {
+  -fx-background-color:  transparent;
+  -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.4) , 10,0,0,1 );
+}
+
+#settings-label {
+  -fx-text-fill: #000000;
+  -fx-font-size: 12pt;
+}
+
+/* Styling the slider track */
+.jfx-slider > .track {
+     -fx-background-color: white;
+}
+
+/* Styling the slider thumb */
+.jfx-slider > .thumb {
+     -fx-background-color: #68a8d9;
+}
+
+/* Styling the filled track */
+.jfx-slider > .colored-track {
+     -fx-background-color: #68a8d9;
+}
+
+/* Styling the animated thumb */
+.jfx-slider > .animated-thumb {
+     -fx-background-color: #68a8d9;
+}
+
+/* Styling the slider value text inside animated thumb */
+.jfx-slider .slider-value {
+     -fx-fill: white;
+     -fx-stroke: white;
+}
+
+/* ComboBox styling */
+.combo-box {
+  -fx-background-color: #d9d9d9;
+  -fx-text-fill: #292828;
+  -fx-border-color: #373f4a;
+}
+
+.combo-box .list-cell {
+  -fx-text-fill: #292828;
+  -fx-border-color: #d9d9d9;
+}
+
+.combo-box .list-view .list-cell {
+  -fx-text-fill: #292828;
+  -fx-background-color: #d9d9d9;
+  -fx-border-color: #d9d9d9;
+}
+
+.combo-box .list-view .list-cell:hover {
+  -fx-background-color: #bdbdbd;
+}
+
+/* CSS for toggleswitch in settings.fxml */
+.styled-toggle .thumb {
+
+	-fx-background-radius: 10;
+	-fx-padding: 10;
+}
+
+.styled-toggle .thumb-area{
+    -fx-background-radius: 10;
+    -fx-padding: 10 40 10 40; /* describes length: 50+50 = 100 width, 5+5=10 height */
+}
+
+.styled-toggle:selected .thumb-area{
+    -fx-background-color: #4994cc;
+}
+
+.styled-toggle .label {
+    -fx-padding: 0 0 0 0; //label belonging to the toggle at the left side of the toggle with 90 between them
+}

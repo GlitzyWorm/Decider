@@ -40,10 +40,14 @@ public class Main extends Application {
         locale = new Locale(prefs.get(Settings.LANGUAGE.toString(), "en"));
         bundle = ResourceBundle.getBundle("DeciderBundle", locale);
 
+        // Retrieves chosen theme
+
+
         // Loads FXML and sets up scene and stage
         fxmlLoader = new FXMLLoader(Main.class.getResource("field-pick.fxml"), bundle);
         scene = new Scene(fxmlLoader.load());
-        scene.getStylesheets().add(String.valueOf(Main.class.getResource("css/Decider.css")));
+        scene.getStylesheets().clear();
+        scene.getStylesheets().add(String.valueOf(Main.class.getResource(getThemePath())));
         scene.setFill(Color.TRANSPARENT);
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setTitle("Decider");
@@ -69,7 +73,6 @@ public class Main extends Application {
             case DEFNUM -> prefs.putInt(setting.toString(), intValue);
         }
 
-        System.out.println("setPref: "+prefs.getInt(Main.Settings.DEFNUM.toString(), 2));
     }
 
     public static void reloadStage() {
@@ -82,6 +85,19 @@ public class Main extends Application {
                 e.printStackTrace();
             }
         });
+    }
+
+    public static String getThemePath() {
+        String themePath;
+        if(prefs.get(Settings.THEME.toString(), "Dark").equals("Dark")) {
+            themePath = "css/DeciderDark.css";
+            System.out.println("Dark: "+themePath);
+        } else {
+            themePath = "css/DeciderLight.css";      // TODO: change to lightTheme
+            System.out.println("Light: "+themePath);
+        }
+
+        return themePath;
     }
 
     // Saves data and closes program.

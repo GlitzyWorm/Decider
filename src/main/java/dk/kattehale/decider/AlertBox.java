@@ -41,7 +41,7 @@ public class AlertBox {
         stackPane.setId("alert-stack");
 
         Scene scene = new Scene(stackPane);
-        scene.getStylesheets().add(String.valueOf(Main.class.getResource("css/Decider.css"))); // Set stylesheet
+        scene.getStylesheets().add(String.valueOf(Main.class.getResource(Main.getThemePath()))); // Set stylesheet
         scene.setFill(Color.TRANSPARENT);
 
         // Centers the window.

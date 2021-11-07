@@ -62,11 +62,11 @@ public class ResultController {
 
     @FXML // Changes scene to main screen (for now it goes to field-pick)
     protected void goToMainMenu() throws IOException {
-        ResourceBundle bundle = ResourceBundle.getBundle("DeciderBundle");;
+        ResourceBundle bundle = ResourceBundle.getBundle("DeciderBundle", Main.locale);
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("field-pick.fxml")), bundle);
         Scene scene = new Scene(loader.load());
         Stage stage = (Stage) menuButton.getScene().getWindow();
-        scene.getStylesheets().add(String.valueOf(Main.class.getResource("css/Decider.css")));
+        scene.getStylesheets().add(String.valueOf(Main.class.getResource(Main.getThemePath())));
         scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
     }
@@ -74,10 +74,10 @@ public class ResultController {
     @FXML // Go back to field-pick and retain input
     protected void goBack() throws IOException {
         // Loads next scene
-        ResourceBundle bundle = ResourceBundle.getBundle("DeciderBundle");;
+        ResourceBundle bundle = ResourceBundle.getBundle("DeciderBundle", Main.locale);
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("field-pick.fxml")), bundle);
         Scene scene = new Scene(loader.load());
-        scene.getStylesheets().add(String.valueOf(Main.class.getResource("css/Decider.css")));
+        scene.getStylesheets().add(String.valueOf(Main.class.getResource(Main.getThemePath())));
         scene.setFill(Color.TRANSPARENT);
 
         // Sends TextFields back to FieldController

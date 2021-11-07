@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<StackPane id="fieldpick-shadow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="950.0" stylesheets="@css/Decider.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.kattehale.decider.FieldController">
+<StackPane id="fieldpick-shadow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.kattehale.decider.FieldController">
    <children>
-      <BorderPane id="fieldpick-root" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@css/Decider.css">
+      <BorderPane id="fieldpick-root" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0">
          <top>
             <ToolBar fx:id="toolBar" nodeOrientation="RIGHT_TO_LEFT" onMouseDragged="#toolbarDragged" onMousePressed="#toolbarPressed" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <items>
-                  <Button id="button-toolbar" fx:id="closeButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#closeProgram" stylesheets="@css/Decider.css" textAlignment="CENTER">
+                  <Button id="button-toolbar" fx:id="closeButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#closeProgram" textAlignment="CENTER">
                      <graphic>
                         <FontIcon id="button-toolbar" iconColor="WHITE" iconLiteral="codicon-chrome-close" iconSize="16" styleClass="button-toolbar" />
                      </graphic>
@@ -28,7 +28,7 @@
                      </graphic>
                   </Button>
                   <Pane HBox.hgrow="ALWAYS" />
-                  <Button id="button-toolbar" fx:id="settingsButton" mnemonicParsing="false" onAction="#openSettings" stylesheets="@css/Decider.css">
+                  <Button id="button-toolbar" fx:id="settingsButton" mnemonicParsing="false" onAction="#openSettings">
                      <graphic>
                         <FontIcon id="button-toolbar" iconColor="WHITE" iconLiteral="codicon-settings-gear" iconSize="16" />
                      </graphic>

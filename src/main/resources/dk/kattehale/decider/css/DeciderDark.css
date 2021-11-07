@@ -51,6 +51,7 @@
   /* -fx-border-color: grey; */
   -fx-background-color: #30343b;
   -fx-padding: 10pt 40pt 10pt 40pt;
+  -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.4) , 10,0,0,1 );
 }
 
 /* CSS for alertbox.java */
@@ -108,4 +109,73 @@
 #settings-label {
   -fx-text-fill: #EDEDED;
   -fx-font-size: 12pt;
+}
+
+/* Styling the slider track */
+.jfx-slider > .track {
+     -fx-background-color: white;
+}
+
+/* Styling the slider thumb */
+.jfx-slider > .thumb {
+     -fx-background-color: #cc2742;
+}
+
+/* Styling the filled track */
+.jfx-slider > .colored-track {
+     -fx-background-color: #cc2742;
+}
+
+/* Styling the animated thumb */
+.jfx-slider > .animated-thumb {
+     -fx-background-color: #cc2742;
+}
+
+/* Styling the slider value text inside animated thumb */
+.jfx-slider .slider-value {
+     -fx-fill: white;
+     -fx-stroke: white;
+}
+
+/* ComboBox styling */
+.combo-box {
+  -fx-background-color: #373f4a;
+  -fx-border-radius: 0;
+  -fx-text-fill: white;
+  -fx-border-color: #373f4a;
+}
+
+.combo-box .list-cell {
+  -fx-text-fill: white;
+  -fx-border-color: #373f4a;
+}
+
+.combo-box .list-view .list-cell {
+  -fx-text-fill: #EDEDED;
+  -fx-background-color: #373f4a;
+  -fx-border-color: #373f4a;
+}
+
+.combo-box .list-view .list-cell:hover {
+  -fx-background-color: #E94560;
+}
+
+/* CSS for toggleswitch in settings.fxml */
+.styled-toggle .thumb {
+
+	-fx-background-radius: 10;
+	-fx-padding: 10;
+}
+
+.styled-toggle .thumb-area{
+    -fx-background-radius: 10;
+    -fx-padding: 10 40 10 40; /* describes length: 50+50 = 100 width, 5+5=10 height */
+}
+
+.styled-toggle:selected .thumb-area{
+    -fx-background-color: #cc2742;
+}
+
+.styled-toggle .label {
+    -fx-padding: 0 0 0 0; //label belonging to the toggle at the left side of the toggle with 90 between them
 }

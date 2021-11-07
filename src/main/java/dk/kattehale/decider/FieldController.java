@@ -128,7 +128,7 @@ public class FieldController implements Initializable {
         // Loads next scene
         FXMLLoader loader = new FXMLLoader(getClass().getResource("result-page.fxml"), ResourceBundle.getBundle("DeciderBundle", Main.locale));
         Scene scene = new Scene(loader.load());
-        scene.getStylesheets().add(String.valueOf(Main.class.getResource("css/Decider.css")));
+        scene.getStylesheets().add(String.valueOf(Main.class.getResource(Main.getThemePath())));
         scene.setFill(Color.TRANSPARENT);
 
         // Retrieves the TextFields and place them in an array.
@@ -179,7 +179,7 @@ public class FieldController implements Initializable {
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("settings.fxml"), ResourceBundle.getBundle("DeciderBundle", Main.locale));
         Scene scene = new Scene(fxmlLoader.load());
-        scene.getStylesheets().add(String.valueOf(Main.class.getResource("css/Decider.css")));
+        scene.getStylesheets().add(String.valueOf(Main.class.getResource(Main.getThemePath())));
         scene.setFill(Color.TRANSPARENT);
 
         // Centers settings stage.
