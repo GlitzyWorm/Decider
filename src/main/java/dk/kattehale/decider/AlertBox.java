@@ -1,6 +1,5 @@
 package dk.kattehale.decider;
 
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -45,19 +44,14 @@ public class AlertBox {
         scene.setFill(Color.TRANSPARENT);
 
         // Centers the window.
-        window.addEventHandler(WindowEvent.WINDOW_SHOWN, new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-                window.setX((screenBounds.getWidth() - window.getWidth()) / 2);
-                window.setY((screenBounds.getHeight() - window.getHeight()) / 2 - 150);
-
-            }
+        window.addEventHandler(WindowEvent.WINDOW_SHOWN, event -> {
+            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+            window.setX((screenBounds.getWidth() - window.getWidth()) / 2);
+            window.setY((screenBounds.getHeight() - window.getHeight()) / 2 - 150);
         });
 
         window.setScene(scene);
         window.showAndWait();  // Shows the window and block user interaction with other windows until this is closed.
-
 
     }
 }

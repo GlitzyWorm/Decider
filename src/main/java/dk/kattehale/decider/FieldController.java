@@ -1,7 +1,6 @@
 package dk.kattehale.decider;
 
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,9 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToolBar;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.*;
@@ -24,18 +21,14 @@ import java.util.prefs.Preferences;
 
 public class FieldController implements Initializable {
 
+    // Used with toolbar
     private double xOffset;
     private double yOffset;
+
+    // Keeps track of textfields created
     private int amountOfTextFields = Main.MINFIELDS;
+
     private boolean firstLaunch = true;
-
-    /* Root */
-    @FXML private BorderPane root;
-
-    /* Toolbar and its buttons */
-    @FXML private ToolBar toolBar;
-    @FXML private Button closeButton;
-    @FXML private Button minButton;
 
     /* Buttons and textfieldContainer for handling adding and deleting TextFields */
     @FXML private Button addButton;
@@ -53,9 +46,7 @@ public class FieldController implements Initializable {
         this.resources = resources;
         prefs = Main.prefs;
 
-        if(firstLaunch) {
-            delButton.setDisable(true);
-        }
+        if(firstLaunch) delButton.setDisable(true);
 
         int extraFields = prefs.getInt(Main.Settings.DEFNUM.toString(), 2) - Main.MINFIELDS;
 
@@ -64,7 +55,6 @@ public class FieldController implements Initializable {
         }
 
     }
-
 
     /* Add and delete TextFields. */
     @FXML
@@ -183,14 +173,10 @@ public class FieldController implements Initializable {
         scene.setFill(Color.TRANSPARENT);
 
         // Centers settings stage.
-        settingsStage.addEventHandler(WindowEvent.WINDOW_SHOWN, new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-                settingsStage.setX((screenBounds.getWidth() - settingsStage.getWidth()) / 2);
-                settingsStage.setY((screenBounds.getHeight() - settingsStage.getHeight()) / 2);
-
-            }
+        settingsStage.addEventHandler(WindowEvent.WINDOW_SHOWN, event -> {
+            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+            settingsStage.setX((screenBounds.getWidth() - settingsStage.getWidth()) / 2);
+            settingsStage.setY((screenBounds.getHeight() - settingsStage.getHeight()) / 2);
         });
 
         settingsStage.initStyle(StageStyle.TRANSPARENT);

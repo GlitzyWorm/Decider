@@ -23,7 +23,6 @@ public class Main extends Application {
 
     // Used for saving settings
     public static Preferences prefs;
-
     public static Locale locale;
 
     static Stage stage;
@@ -39,9 +38,6 @@ public class Main extends Application {
         // Retrieves chosen language
         locale = new Locale(prefs.get(Settings.LANGUAGE.toString(), "en"));
         bundle = ResourceBundle.getBundle("DeciderBundle", locale);
-
-        // Retrieves chosen theme
-
 
         // Loads FXML and sets up scene and stage
         fxmlLoader = new FXMLLoader(Main.class.getResource("field-pick.fxml"), bundle);
@@ -64,10 +60,9 @@ public class Main extends Application {
         launch();
     }
 
-    // Saves settins and reloads the stage
+    // Saves settings in preferences
     public static void setPref(Settings setting, String StringValue, int intValue) {
 
-        // Saves settings in preferences
         switch (setting) {
             case LANGUAGE, THEME -> prefs.put(setting.toString(), StringValue);
             case DEFNUM -> prefs.putInt(setting.toString(), intValue);
@@ -75,8 +70,9 @@ public class Main extends Application {
 
     }
 
+    // Reloads Stage
     public static void reloadStage() {
-        // Reloads Stage
+
         stage.close();
         Platform.runLater( () -> {
             try {
@@ -85,19 +81,11 @@ public class Main extends Application {
                 e.printStackTrace();
             }
         });
+
     }
 
     public static String getThemePath() {
-        String themePath;
-        if(prefs.get(Settings.THEME.toString(), "Dark").equals("Dark")) {
-            themePath = "css/DeciderDark.css";
-            System.out.println("Dark: "+themePath);
-        } else {
-            themePath = "css/DeciderLight.css";      // TODO: change to lightTheme
-            System.out.println("Light: "+themePath);
-        }
-
-        return themePath;
+        return prefs.get(Settings.THEME.toString(), "Dark").equals("Dark") ? "css/DeciderDark.css" : "css/DeciderLight.css";
     }
 
     // Saves data and closes program.
@@ -110,8 +98,7 @@ public class Main extends Application {
         stage.setIconified(true);
     }
 
-
-
+    // Enum to keep track of preference keys
     enum Settings {
         LANGUAGE,
         DEFNUM,

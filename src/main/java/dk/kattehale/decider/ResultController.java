@@ -6,7 +6,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToolBar;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -18,16 +17,12 @@ import java.util.ResourceBundle;
 
 public class ResultController {
 
+    // Used with toolbar
     private double xOffset;
     private double yOffset;
 
     private String[] choices;
     private TextField[] tfa;
-
-    /* Toolbar and its buttons */
-    @FXML private ToolBar toolBar;
-    @FXML private Button closeButton;
-    @FXML private Button minButton;
 
     /* Labels */
     @FXML private Label chosenLabel;
@@ -35,11 +30,6 @@ public class ResultController {
     /* Bottom buttons */
     @FXML private Button menuButton;
     @FXML private Button changeButton;
-    @FXML private Button redoButton;
-    @FXML private Button quitButton;
-
-
-
 
     // Method to receive array of TextFields
     public void receiveTextFields(TextField[] tfa) {
@@ -94,11 +84,6 @@ public class ResultController {
         pickRandom();
     }
 
-    // quitButton action is sent to closeProgram().
-
-
-
-
     /* Buttons to close, minimize and maximize the program */
     @FXML
     protected void closeProgram() {
@@ -109,9 +94,6 @@ public class ResultController {
     protected void minimizeProgram() {
         Main.minimizeProgram();
     }
-
-
-
 
     /* Makes the toolbar draggable */
     @FXML

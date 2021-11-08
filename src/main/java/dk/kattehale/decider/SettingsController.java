@@ -14,32 +14,29 @@ import java.util.ResourceBundle;
 
 public class SettingsController implements Initializable {
 
+    // Used with toolbar
     private double xOffset;
     private double yOffset;
 
-    @FXML
-    ComboBox<String> comboLang;
-
-    @FXML
-    JFXSlider defSlider;
-
-    @FXML
-    ToggleSwitch themeSwitch;
-
+    @FXML ComboBox<String> comboLang;
+    @FXML JFXSlider defSlider;
+    @FXML ToggleSwitch themeSwitch;
     @FXML Button settingsClose;
 
-    String[] langOptions;
-    String selectedLanguage;
+    private String selectedLanguage;
+    private String lang;
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
 
         // Language combobox
-        langOptions = new String[]{resources.getString("settingsLangChoiceEn"), resources.getString("settingsLangChoiceDa")};
+        String[] langOptions = new String[]{resources.getString("settingsLangChoiceEn"), resources.getString("settingsLangChoiceDa")};
+        lang = Main.locale.toString();
 
-        selectedLanguage = switch (Main.locale.toString()) {
-            case "da" -> resources.getString("settingsLangChoiceDa"); // Danish
-            default -> resources.getString("settingsLangChoiceEn");   // English
+        selectedLanguage = switch (lang) {
+            case "da" -> resources.getString("settingsLangChoiceDa");   // Danish
+            case "en" -> resources.getString("settingsLangChoiceEn");   // English
+            default -> "English";
         };
 
         comboLang.getItems().removeAll(comboLang.getItems());
@@ -50,25 +47,21 @@ public class SettingsController implements Initializable {
         defSlider.setValue(Main.prefs.getInt(Main.Settings.DEFNUM.toString(), 2));
 
         // ToggleSwitch
-        if(Main.prefs.get(Main.Settings.THEME.toString(), "Dark").equals("Dark")) {
-            themeSwitch.setSelected(true);
-        } else {
-            themeSwitch.setSelected(false);
-        }
+        themeSwitch.setSelected(Main.prefs.get(Main.Settings.THEME.toString(), "Dark").equals("Dark"));
+    }
 
+    @FXML
+    protected void languageChanged() {
+        // Gets the selected language
+        lang = switch (comboLang.getSelectionModel().getSelectedItem()) {
+            case "English", "Engelsk" -> "en";
+            case "Danish", "Dansk" -> "da";
+            default -> "da";
+        };
     }
 
     @FXML // Gets input from the different options and saves it.
     protected void saveButtonAction () {
-
-        // Gets the selected language
-        String lang = switch (comboLang.getSelectionModel().getSelectedItem()) {
-            case "English" -> "en";
-            case "Danish" -> "da";
-            default -> "en";
-        };
-
-        selectedLanguage = comboLang.getSelectionModel().getSelectedItem();
 
         // Gets the selected amount of TextFields
         int defnum = (int) defSlider.getValue();
@@ -81,21 +74,19 @@ public class SettingsController implements Initializable {
             theme = "light";
         }
 
-
-        // Sends it back and restarts application
-        Stage stage = (Stage) comboLang.getScene().getWindow();
-        stage.close();
+        // Saves preferences
         Main.setPref(Main.Settings.DEFNUM, "-1", defnum);
         Main.setPref(Main.Settings.LANGUAGE, lang, -1);
         Main.setPref(Main.Settings.THEME, theme, -1);
 
+        // Sends it back and restarts application
+        Stage stage = (Stage) comboLang.getScene().getWindow();
+        stage.close();
         Main.reloadStage();
-
-
     }
 
 
-    /* Buttons to close, minimize and maximize the program. */
+    // Button to close settings window
     @FXML
     protected void closeProgram() {
         Stage stage = (Stage) settingsClose.getScene().getWindow();
